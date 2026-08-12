@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#14091f">
+    <title>مخ ماشين — Guess Machine</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Guess Machine home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>مخ ماشين</strong><small>GUESS MACHINE</small></span>
+        </a>
+        <div class="machine-status" aria-live="polite">
+          <span class="status-lamp"></span>
+          <span id="machine-status-text">في وضع الاستعداد</span>
+        </div>
+        <div class="top-actions">
+          <button id="sound-toggle" class="icon-button" type="button" aria-pressed="false" aria-label="Toggle sound">♪</button>
+          <button id="new-game" class="text-button hidden" type="button">لعبة جديدة</button>
+        </div>
+      </header>
+
+      <section id="setup" class="setup-panel" aria-labelledby="setup-title">
+        <div class="eyebrow">ASSEMBLE THE NIGHT</div>
+        <h1 id="setup-title">شغّل <em>الماكينة</em></h1>
+        <p>أدخل الفرق. اختر اللغة. الأسئلة تُجهّز قبل أول ضغطة.</p>
+        <div class="setup-grid">
+          <fieldset>
+            <legend>لغة اللعبة</legend>
+            <div class="segmented" id="language-picker">
+              <button type="button" data-language="ar" class="active">العربية</button>
+              <button type="button" data-language="en">English</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>الفرق</legend>
+            <label><span>الفريق الأول</span><input id="team-one" maxlength="32" value="الصقور"></label>
+            <label><span>الفريق الثاني</span><input id="team-two" maxlength="32" value="النجوم"></label>
+          </fieldset>
+        </div>
+        <button id="start-game" class="start-button" type="button">
+          <span>ابدأ التجهيز</span><b aria-hidden="true">↗</b>
+        </button>
+        <p id="setup-error" class="error-message" role="alert"></p>
+      </section>
+
+      <section id="game" class="game hidden" aria-label="Guess Machine board">
+        <div class="score-rail" id="score-rail" aria-label="Teams and scores"></div>
+
+        <section class="board-section" aria-labelledby="board-heading">
+          <div class="section-heading">
+            <div><span>01 / اختر المجال</span><h2 id="board-heading">كل الفئات أمامكم</h2></div>
+            <p id="turn-copy">دور الفريق</p>
+          </div>
+          <div id="category-grid" class="category-grid"></div>
+        </section>
+
+        <section class="machine-bay" aria-labelledby="dial-heading">
+          <div class="machine-copy">
+            <span>02 / اضبط الصعوبة</span>
+            <h2 id="dial-heading">اختر فئة أولاً</h2>
+            <p id="dial-instruction">المقبض نائم حتى تختاروا مجال السؤال.</p>
+          </div>
+
+          <div id="dial-control" class="dial-control dormant" tabindex="0" role="group" aria-label="Difficulty dial">
+            <div class="dial-scale" aria-hidden="true">
+              <span style="--angle:-58deg">100</span>
+              <span style="--angle:0deg">200</span>
+              <span style="--angle:58deg">300</span>
+            </div>
+            <div id="dial" class="dial" aria-hidden="true">
+              <div class="dial-rim"><div class="dial-face"><span class="dial-pointer"></span><span class="dial-screw"></span></div></div>
+            </div>
+            <button id="dial-press" class="dial-press" type="button" disabled><span>اضغط</span><small>ENGAGE</small></button>
+            <div class="difficulty-direct" id="difficulty-direct" aria-label="Direct difficulty selection"></div>
+          </div>
+
+          <div class="machine-readout" aria-live="polite">
+            <span>SELECTED LOAD</span>
+            <strong id="readout-value">—</strong>
+            <small id="readout-category">NO CATEGORY</small>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <section id="question-stage" class="question-stage hidden" aria-live="polite" aria-labelledby="question-text">
+      <div class="question-chrome"><span id="question-category">CATEGORY</span><b id="question-value">200</b></div>
+      <div class="question-body">
+        <p class="question-label">QUESTION LOADED</p>
+        <h2 id="question-text"></h2>
+        <div id="answer-panel" class="answer-panel hidden">
+          <span>الإجابة</span><strong id="answer-text"></strong><p id="answer-explanation"></p>
+        </div>
+      </div>
+      <div class="question-actions">
+        <button id="reveal-answer" class="reveal-button" type="button">اكشف الإجابة</button>
+        <div id="outcome-actions" class="outcome-actions hidden">
+          <button type="button" data-outcome="correct" class="correct">✓ صحيحة</button>
+          <button type="button" data-outcome="incorrect">× خاطئة</button>
+          <button type="button" data-outcome="skipped">— تخطّي</button>
+          <button type="button" data-outcome="disputed">؟ اعتراض</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

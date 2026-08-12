@@ -1,0 +1,20 @@
+{
+  "name": "guess-machine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Guess Machine / مخ ماشين — prepared multiplayer trivia runtime",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.mjs",
+    "start": "node src/server.mjs",
+    "seed": "node scripts/seed.mjs",
+    "test": "node --test --test-concurrency=1",
+    "test:core": "node --test --test-concurrency=1 tests/core.test.mjs",
+    "test:engine": "node --test --test-concurrency=1 tests/assembly.test.mjs tests/question-bank.test.mjs tests/history-memory.test.mjs tests/fallback-resilience.test.mjs tests/diversity.test.mjs tests/golden-offline-game.test.mjs tests/difficulty-audit.test.mjs",
+    "test:foundry": "node --test --test-concurrency=1 tests/provider-foundation.test.mjs tests/question-writing-quality.test.mjs tests/acquisition-verification.test.mjs tests/foundry-replenishment.test.mjs tests/custom-category-runtime.test.mjs tests/custom-scope-map.test.mjs tests/custom-manufacturing-reuse.test.mjs",
+    "test:api": "node --test --test-concurrency=1 tests/api.test.mjs"
+  }
+}
